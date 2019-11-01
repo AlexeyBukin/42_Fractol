@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 22:02:22 by kcharla           #+#    #+#             */
-/*   Updated: 2019/10/31 17:21:43 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/01 21:32:54 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@
 ** Function that handles arrow buttons
 */
 
-//int		arrows_pressed(int key, t_data *d, t_data *ref)
-//{
-//	if (d == NULL || ref == NULL)
-//		return (-1);
-//	if (key == RIGHT_KEY)
-//		d->ha = cycle(d->ha + HA_DELTA, HA_MIN, HA_MAX);
-//	else if (key == LEFT_KEY)
-//		d->ha = cycle(d->ha - HA_DELTA, HA_MIN, HA_MAX);
-//	else if (key == UP_KEY)
-//		d->va = clamp(d->va + VA_DELTA, VA_MIN, VA_MAX);
-//	else if (key == DOWN_KEY)
-//		d->va = clamp(d->va - VA_DELTA, VA_MIN, VA_MAX);
-//	else
-//		return (-1);
+int		arrows_pressed(int key, t_data *d, t_data *ref)
+{
+	if (d == NULL || ref == NULL)
+		return (-1);
+	if (key == RIGHT_KEY)
+		d->offset_x += d->scale / 4;
+	else if (key == LEFT_KEY)
+		d->offset_x -= d->scale / 4;
+	else if (key == UP_KEY)
+		d->offset_y -= d->scale / 4;
+	else if (key == DOWN_KEY)
+		d->offset_y += d->scale / 4;
+	else
+		return (-1);
 //	if (is_data_equal(d, ref))
 //		return (0);
-//	draw_parallel(d);
-//	return (0);
-//}
+	draw_fract(d);
+	return (0);
+}
 
 /*
 ** Function that handles WASD buttons
@@ -56,7 +56,7 @@ int		wasd_pressed(int key, t_data *d, t_data *ref)
 		return (-1);
 	if (is_data_equal(d, ref))
 		return (0);
-	draw_mondelbrot(d);
+	draw_fract(d);
 	return (0);
 }
 
@@ -64,19 +64,20 @@ int		wasd_pressed(int key, t_data *d, t_data *ref)
 ** Function that handles mouse scroll
 */
 
+
+
+#include <stdio.h>
 int		mouse_scrolled(int key, t_data *d, t_data *ref)
 {
 	if (d == NULL || ref == NULL)
 		return (-1);
 	if (key == SCROLL_UP)
-		d->scale -= SCALE_DELTA;
+		d->scale /= SCALE_DELTA;
 	else if (key == SCROLL_DOWN)
-		d->scale += SCALE_DELTA;
+		d->scale *= SCALE_DELTA;
 	else
 		return (-1);
-	if (is_data_equal(d, ref))
-		return (-1);
-	draw_mondelbrot(d);
+	draw_fract(d);
 	return (0);
 }
 
@@ -86,45 +87,63 @@ int		mouse_scrolled(int key, t_data *d, t_data *ref)
 
 int		eq_pressed(int key, t_data *d, t_data *ref)
 {
+	int		max_iters_temp;
+
 	if (d == NULL || ref == NULL)
 		return (-1);
 	if (key == E_KEY)
-		d->max_iters += ITERATIONS_DELTA;
+		max_iters_temp = clamp_int(d->max_iters * ITERATIONS_DELTA + 1, 2, 256);
 	else if (key == Q_KEY)
-		d->max_iters -= ITERATIONS_DELTA;
+		max_iters_temp = clamp_int(round (d->max_iters / ITERATIONS_DELTA - 1), 2, 256);
 	else
 		return (-1);
-	if (is_data_equal(d, ref))
+	if (max_iters_temp == d->max_iters)
 		return (0);
-	draw_mondelbrot(d);
+	d->max_iters = max_iters_temp;
+	draw_fract(d);
+	return (0);
+}
+
+int		shift_ctrl_pressed(int key, t_data *d, t_data *ref)
+{
+	int		radius_temp;
+
+	if (d == NULL || ref == NULL)
+		return (-1);
+	if (key == SHIFT_KEY)
+		radius_temp = clamp_int(d->radius * 2, 4, 512);
+	else if (key == CTRL_KEY)
+		radius_temp = clamp_int(d->radius / 2, 4, 512);
+	else
+		return (-1);
+	if (radius_temp == d->radius)
+		return (0);
+	d->radius = radius_temp;
+	draw_fract(d);
 	return (0);
 }
 
 /*
-** Function that handles shift and ctrl buttons
+** Function that handles 1 to 3 keys
 */
 
-//int		num_keys_pressed(int key, t_data *d, t_data *ref)
-//{
-//	if (d == NULL || ref == NULL)
-//		return (-1);
-//	if (key == NUM_1_KEY || key == NUM_3_KEY)
-//		d->ha = 0;
-//	if (key == NUM_1_KEY || key == NUM_2_KEY)
-//		d->va = 0;
-//	if (key == NUM_2_KEY)
-//		d->ha = M_PI / 2;
-//	else if (key == NUM_3_KEY)
-//		d->va = VA_MAX;
-//	else if (key == NUM_4_KEY)
-//	{
-//		d->ha = M_PI / 4;
-//		d->va = M_PI / 4;
-//	}
-//	else if (key == NUM_5_KEY)
-//		d->ha = cycle(d->ha + ((HA_MAX - HA_MIN) / 2), HA_MIN, HA_MAX);
-//	if (is_data_equal(d, ref))
-//		return (-1);
-//	draw_parallel(d);
-//	return (0);
-//}
+int		num_keys_pressed(int key, t_data *d, t_data *ref)
+{
+	int 	cs_temp;
+
+	if (d == NULL || ref == NULL)
+		return (-1);
+	if (key == NUM_1_KEY)
+		cs_temp = COLOR_SCHEME_BW;
+	else if (key == NUM_2_KEY)
+		cs_temp = COLOR_SCHEME_RGB;
+	else if (key == NUM_3_KEY)
+		cs_temp = COLOR_SCHEME_NICE;
+	else
+		return (-1);
+	if (cs_temp == d->color_scheme)
+		return (0);
+	d->color_scheme = cs_temp;
+	draw_fract(d);
+	return (0);
+}

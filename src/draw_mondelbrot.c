@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 01:10:35 by kcharla           #+#    #+#             */
-/*   Updated: 2019/10/31 17:29:50 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/10/31 23:23:22 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,35 @@
 #include <stdio.h>
 #include "fractol.h"
 
+void		init_mandelbrot(t_data *data)
+{
+	data->scale = 4;
+	data->c_i = 1;
+	data->c_r = 1;
+	data->max_iters = 50;
+	data->radius = 256;
+	data->fractal_id = FRACTAL_MONDELBROT;
+}
+
 int 			normal_mond(t_data *d, double px, double py)
 {
-	double x = (px / 512 - 1) * d->scale;
-	double y = (py / 512 - 1) * d->scale;
+	double x = (px / 512.0 - 1.0) * d->scale;
+	double y = (py / 512.0 - 1.0) * d->scale;
 
 	//double x = 0;
 	//double y = 0;
 
 	int iter = 0;
 
-	while ((x * x + y*y <= 2*2) && (iter < d->max_iters))
+	while ((x * x + y*y <= 4) && (iter < d->max_iters))
 	{
 		double xold = x;
 		double yold = y;
-		y = 2 * x * y - d->c_i;
+		y = 2.0 * x * y - d->c_i;
 		x = xold * xold + yold * yold - d->c_r;
 		iter++;
 	}
-	if (iter == ITERATION_MAX)
+	if (iter == d->max_iters)
 		return (0);
 	return (iter);
 }
