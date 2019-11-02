@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 05:39:53 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/01 20:38:44 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:15:00 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,35 +88,8 @@ double	cycle(double val, double min, double max)
 ** Function that maps value from one range to another
 */
 
-double	map(double val, double from_min, double from_max, double to_min, double to_max)
+double	map_from_0_to_1(double val, double from_min, double from_max)
 {
-	val = (val - from_min) / (from_max - from_min) * (to_max - to_min) + to_min;
+	val = (val - from_min) / (from_max - from_min);
 	return (val);
-}
-
-/*
-** Function that maps scale input
-*/
-
-#include <stdio.h>
-
-double	scale_map(int input)
-{
-	printf("scaled from %d ", input);
-	if (input > 0)
-	{
-		//double b = (double) 1 / sqrt(input) / 100 + 0.01;
-		double b = (double) 1 / input;
-		printf("to %f\n", b);
-		return (b);
-	}
-	if (input == 0)
-	{
-		double b = 1;
-		printf("to %f\n", b);
-		return (b);
-	}
-	double b =(double)(-1.0 * (double)input);
-	printf("to %f\n", b);
-	return ((double)(-1.0 * (double)input));
 }

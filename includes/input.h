@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 12:10:23 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 12:11:57 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 12:14:01 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@
 
 # define SCROLL_UP 	 4
 # define SCROLL_DOWN 5
-
-# define PLUS_KEY   69
-# define MINUS_KEY  78
+# define WHEEL_CLICK 3
 
 # define SHIFT_KEY  257
 # define CTRL_KEY   256

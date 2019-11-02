@@ -18,6 +18,6 @@
 
 int		close_on_x(void *param)
 {
-    (void)param;
-    exit(0);
+	(void)param;
+	exit(0);
 }

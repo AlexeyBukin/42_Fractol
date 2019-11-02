@@ -45,10 +45,10 @@ int		cs_r_g_b(double val)
 int		cs_nice(double val)
 {
 	if (val < 0.125)
-		return (blend(0x0000AAAA, 0x00000000, map(val, 0, 0.125, 0, 1)));
+		return (blend(0x0000AAAA, 0x00000000, map_from_0_to_1(val, 0, 0.125)));
 	if (val < 0.25)
-		return (blend(0x000000AA, 0x0000AAAA, map(val, 0.125, 0.25, 0, 1)));
+		return (blend(0x000000AA, 0x0000AAAA, map_from_0_to_1(val, 0.125, 0.25)));
 	if (val < 0.5)
-		return (blend(0x00AA00AA, 0x000000AA, map(val, 0.25, 0.5, 0, 1)));
-	return (blend(0x0000AA00, 0x00AA00AA, map(val, 0.5, 1, 0, 1)));
+		return (blend(0x00AA00AA, 0x000000AA, map_from_0_to_1(val, 0.25, 0.5)));
+	return (blend(0x0000AA00, 0x00AA00AA, map_from_0_to_1(val, 0.5, 1)));
 }

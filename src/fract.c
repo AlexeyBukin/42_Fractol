@@ -18,10 +18,10 @@
 
 void	draw_fract(t_data *data)
 {
-    if (data->fractal_id == FRACTAL_JULIA)
-        draw_julia(data);
-    else if (data->fractal_id == FRACTAL_MONDELBROT)
-        draw_julia(data);
+	if (data->fractal_id == FRACTAL_JULIA)
+		draw_julia(data);
+	else if (data->fractal_id == FRACTAL_MONDELBROT)
+		draw_julia(data);
 }
 
 /*
@@ -30,14 +30,14 @@ void	draw_fract(t_data *data)
 
 int		get_fractal_id(char *str)
 {
-    if (ft_strcmp(str, "julia") == 0)
-    {
-        return (FRACTAL_JULIA);
-    }
-    else if (ft_strcmp(str, "mandelbrot") == 0)
-    {
-        return (FRACTAL_MONDELBROT);
-    }
-    else
-        return (0);
+	if (ft_strcmp(str, "julia") == 0)
+	{
+		return (FRACTAL_JULIA);
+	}
+	else if (ft_strcmp(str, "mandelbrot") == 0)
+	{
+		return (FRACTAL_MONDELBROT);
+	}
+	else
+		return (0);
 }

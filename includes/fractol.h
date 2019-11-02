@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:06:26 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 12:03:56 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 12:49:25 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define FRACTAL_JULIA        1
 # define FRACTAL_MONDELBROT   2
 
-# define COMPLEX_ARG_REAL_DELTA 0.1
-# define COMPLEX_ARG_IMG_DELTA  0.1
+# define COMPLEX_ARG_REAL_DELTA 0.05
+# define COMPLEX_ARG_IMG_DELTA  0.05
 
 # define ITERATIONS_DELTA 1.3
 # define SCALE_DELTA 1.3
@@ -62,6 +62,7 @@ typedef struct		s_data
 	double			c_i;
 	double			radius;
 	int				fractal_id;
+	int 			wheel_pressed;
 	int 			mouse_old_x;
 	int 			mouse_old_y;
 }					t_data;
@@ -70,6 +71,7 @@ int					init_data(t_data *data);
 
 int					on_mouse_moved(int x, int y, void *data);
 int					on_mouse_pressed(int key, int x, int y, void *data);
+int					on_mouse_released(int key, int x, int y, void *data);
 int					on_key_pressed(int key, void *data);
 int					close_on_x(void *param);
 
@@ -87,6 +89,8 @@ int					img_clear(t_data *data);
 double				scale_map(int input);
 int					blend(int c1, int c2, double val);
 int					clamp_int(int val, int min, int max);
+
+double				map_from_0_to_1(double val, double from_min, double from_max);
 double				map(double val, double from_min, double from_max,
 									double to_min, double to_max);
 

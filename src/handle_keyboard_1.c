@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 12:12:53 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 12:13:15 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:07:23 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,20 @@ int		on_key_pressed(int key, void *data)
 
 int		eq_pressed(int key, t_data *d)
 {
-	int		max_iters_temp;
+	int		max_i_tmp;
 
 	if (d == NULL)
 		return (-1);
 	if (key == E_KEY)
-		max_iters_temp = clamp_int(d->max_iters * ITERATIONS_DELTA + 1, 2, 256);
+		max_i_tmp = clamp_int(d->max_iters * ITERATIONS_DELTA + 1, 2, 256);
 	else if (key == Q_KEY)
-		max_iters_temp = clamp_int((int)round(d->max_iters / ITERATIONS_DELTA - 1), 2, 256);
+		max_i_tmp = clamp_int((int)round(d->max_iters / ITERATIONS_DELTA - 1),
+				2, 256);
 	else
 		return (-1);
-	if (max_iters_temp == d->max_iters)
+	if (max_i_tmp == d->max_iters)
 		return (0);
-	d->max_iters = max_iters_temp;
+	d->max_iters = max_i_tmp;
 	draw_fract(d);
 	return (0);
 }
@@ -88,7 +89,7 @@ int		shift_ctrl_pressed(int key, t_data *d)
 
 int		num_keys_pressed(int key, t_data *d)
 {
-	int 	cs_temp;
+	int		cs_temp;
 
 	if (d == NULL)
 		return (-1);

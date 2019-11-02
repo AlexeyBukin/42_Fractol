@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 08:35:37 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 11:59:21 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 12:29:04 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		main(int argc, char **argv)
 	mlx_hook(data.win, 17, 0, close_on_x, (void *)&data);
 	mlx_hook(data.win, 4, 0, on_mouse_pressed, (void *)&data);
     mlx_hook(data.win, 6, 0, on_mouse_moved, (void *)&data);
+	mlx_hook(data.win, 5, 0, on_mouse_released, (void *)&data);
 	mlx_loop(data.mlx);
 	return (0);
 }
@@ -59,6 +60,7 @@ int		init_data(t_data *data)
     endian = 0;
     size_line = 0;
     bps = 0;
+    data->wheel_pressed = 0;
     data->mouse_old_x = 0;
     data->mouse_old_y = 0;
     data->mlx = mlx_init();
