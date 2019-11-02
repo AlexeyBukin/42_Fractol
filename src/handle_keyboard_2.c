@@ -43,13 +43,13 @@ int		wasd_pressed(int key, t_data *d)
 	if (d == NULL)
 		return (-1);
 	if (key == D_KEY)
-		d->c_i += COMPLEX_ARG_IMG_DELTA;
+		d->c_i += COMPLEX_ARG_IMG_DELTA * d->scale;
 	else if (key == A_KEY)
-		d->c_i -= COMPLEX_ARG_IMG_DELTA;
+		d->c_i -= COMPLEX_ARG_IMG_DELTA * d->scale;
 	else if (key == W_KEY)
-		d->c_r += COMPLEX_ARG_REAL_DELTA;
+		d->c_r += COMPLEX_ARG_REAL_DELTA * d->scale;
 	else if (key == S_KEY)
-		d->c_r -= COMPLEX_ARG_REAL_DELTA;
+		d->c_r -= COMPLEX_ARG_REAL_DELTA * d->scale;
 	else
 		return (-1);
 	draw_fract(d);

@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 05:39:53 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/01 21:07:22 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:23:27 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		cs_nice(double val)
 	if (val < 0.125)
 		return (blend(0x0000AAAA, 0x00000000, map_from_0_to_1(val, 0, 0.125)));
 	if (val < 0.25)
-		return (blend(0x000000AA, 0x0000AAAA, map_from_0_to_1(val, 0.125, 0.25)));
+		return (blend(0xAA, 0x0000AAAA, map_from_0_to_1(val, 0.125, 0.25)));
 	if (val < 0.5)
 		return (blend(0x00AA00AA, 0x000000AA, map_from_0_to_1(val, 0.25, 0.5)));
 	return (blend(0x0000AA00, 0x00AA00AA, map_from_0_to_1(val, 0.5, 1)));

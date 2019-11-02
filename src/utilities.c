@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 05:39:53 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:15:00 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:17:45 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Function blends two colors by the given value
 */
 
-int		blend(int c1, int c2, double val)
+int			blend(int c1, int c2, double val)
 {
 	int	t;
 	int	r;
@@ -37,7 +37,7 @@ int		blend(int c1, int c2, double val)
 ** Function that clamps value from min to max
 */
 
-double	clamp(double val, double min, double max)
+double		clamp(double val, double min, double max)
 {
 	if (val < min)
 	{
@@ -54,7 +54,7 @@ double	clamp(double val, double min, double max)
 ** Function that clamps value from min to max
 */
 
-int	clamp_int(int val, int min, int max)
+int			clamp_int(int val, int min, int max)
 {
 	if (val < min)
 	{
@@ -71,7 +71,7 @@ int	clamp_int(int val, int min, int max)
 ** Function that loops value within min and max
 */
 
-double	cycle(double val, double min, double max)
+double		cycle(double val, double min, double max)
 {
 	while (val > max)
 	{
@@ -88,7 +88,7 @@ double	cycle(double val, double min, double max)
 ** Function that maps value from one range to another
 */
 
-double	map_from_0_to_1(double val, double from_min, double from_max)
+double		map_from_0_to_1(double val, double from_min, double from_max)
 {
 	val = (val - from_min) / (from_max - from_min);
 	return (val);
