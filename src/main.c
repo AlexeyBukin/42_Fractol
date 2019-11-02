@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 08:35:37 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:34:40 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:49:19 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int		main(int argc, char **argv)
 {
+	int 		error_code;
 	t_data		data;
 
 	data.fractal_id = get_fractal_id(argv[(argc == 2 ? 1 : 0)]);
@@ -27,9 +28,11 @@ int		main(int argc, char **argv)
 			"from the list:\n 1) julia\n 2) mandelbrot\n");
 		return (0);
 	}
-	if (init_data(&data) < 0)
+	if ((error_code = init_data(&data)) < 0)
 	{
-		ft_putstr("failed to init, exit...\n");
+		ft_putstr("failed to init, exit...\n[ error code is: ");
+		ft_putstr(ft_itoa(error_code));
+		ft_putstr(" ]\n");
 		return (-1);
 	}
 	draw_fract(&data);
@@ -80,6 +83,8 @@ int		init_fract(t_data *data)
 		return (-1);
 	if (data->fractal_id == FRACTAL_JULIA)
 		init_julia(data);
+	else if (data->fractal_id == FRACTAL_MANDELBROT)
+		init_mandelbrot(data);
 	else
 		return (-2);
 	return (0);

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_julia.c                                       :+:      :+:    :+:   */
+/*   draw_mandelbrot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/02 13:39:21 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:39:45 by kcharla          ###   ########.fr       */
+/*   Created: 2019/11/02 13:40:33 by kcharla           #+#    #+#             */
+/*   Updated: 2019/11/02 13:41:39 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		init_julia(t_data *data)
+void		init_mandelbrot(t_data *data)
 {
 	data->scale = 0.828;
-	data->color_scheme = COLOR_SCHEME_NICE;
+	data->color_scheme = COLOR_SCHEME_BW;
 	data->c_i = -0.8;
 	data->c_r = 0;
 	data->max_iters = 50;
@@ -24,7 +24,7 @@ void		init_julia(t_data *data)
 	data->offset_x = 0;
 }
 
-int			get_iter_julia(t_data *d, int px, int py)
+int			get_iter_mandelbrot(t_data *d, int px, int py)
 {
 	int		iter;
 	double	temp_y;
@@ -48,11 +48,11 @@ int			get_iter_julia(t_data *d, int px, int py)
 	return (iter);
 }
 
-int			get_julia_color(t_data *d, int x, int y)
+int			get_mandelbrot_color(t_data *d, int x, int y)
 {
 	int			final_iter;
 
-	final_iter = get_iter_julia(d, x, y);
+	final_iter = get_iter_mandelbrot(d, x, y);
 	if (final_iter == d->max_iters)
 		return (0);
 	if (d->color_scheme == COLOR_SCHEME_BW)
@@ -64,7 +64,7 @@ int			get_julia_color(t_data *d, int x, int y)
 	return (0);
 }
 
-void		draw_julia(t_data *d)
+void		draw_mandelbrot(t_data *d)
 {
 	int				color;
 	int				y;
@@ -75,9 +75,9 @@ void		draw_julia(t_data *d)
 	while (y < FRACT_BOUND_Y)
 	{
 		x = 0;
-		while (x < FRACT_BOUND_X)
+		while (x < FRACT_BOUND_Y)
 		{
-			color = get_julia_color(d, x, y);
+			color = get_mandelbrot_color(d, x, y);
 			img_pixel_put(d, x, y, color);
 			x++;
 		}

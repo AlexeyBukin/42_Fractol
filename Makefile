@@ -19,9 +19,8 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 
 #ls *.c
 C_FILES_LIST = handle_mouse.c handle_keyboard_1.c handle_keyboard_2.c handle_window.c \
-color_schemes.c img_pixel_put.c draw_julia.c \
-fract.c main.c  utilities.c
-
+color_schemes.c img_pixel_put.c fract.c main.c  utilities.c \
+draw_julia.c draw_mandelbrot.c \
 
 C_FILES	= $(addprefix $(C_DIR), $(C_FILES_LIST))
 

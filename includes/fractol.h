@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:06:26 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:33:15 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 13:42:44 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # define FRACT_BOUND_X  1024
 # define FRACT_BOUND_Y  1024
-# define FRACT_OFFSET_Y 128
 
 # define WINDOW_BOUND_X  1024
 # define WINDOW_BOUND_Y  1024
@@ -35,7 +34,7 @@
 # define MASK_BLUE  0x000000FF
 
 # define FRACTAL_JULIA        1
-# define FRACTAL_MONDELBROT   2
+# define FRACTAL_MANDELBROT   2
 
 # define COMPLEX_ARG_REAL_DELTA 0.01
 # define COMPLEX_ARG_IMG_DELTA  0.01
@@ -81,7 +80,8 @@ int					get_fractal_id(char *str);
 void				init_julia(t_data *data);
 void				draw_julia(t_data *d);
 
-void				draw_mondelbrot(t_data *d);
+void				init_mandelbrot(t_data *data);
+void				draw_mandelbrot(t_data *d);
 
 int					img_pixel_put(t_data *data, int x, int y, int col);
 int					img_clear(t_data *data);
