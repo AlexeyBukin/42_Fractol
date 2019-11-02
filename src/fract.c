@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 11:37:18 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:43:53 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 22:22:04 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	draw_fract(t_data *data)
 		draw_julia(data);
 	else if (data->fractal_id == FRACTAL_MANDELBROT)
 		draw_mandelbrot(data);
+	else if (data->fractal_id == FRACTAL_PLEX)
+		draw_plex(data);
 }
 
 /*
@@ -37,6 +39,10 @@ int		get_fractal_id(char *str)
 	else if (ft_strcmp(str, "mandelbrot") == 0)
 	{
 		return (FRACTAL_MANDELBROT);
+	}
+	else if (ft_strcmp(str, "plex") == 0)
+	{
+		return (FRACTAL_PLEX);
 	}
 	else
 		return (0);

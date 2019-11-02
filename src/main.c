@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 08:35:37 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:49:19 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 23:53:39 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 int		main(int argc, char **argv)
 {
-	int 		error_code;
+	int			error_code;
 	t_data		data;
 
 	data.fractal_id = get_fractal_id(argv[(argc == 2 ? 1 : 0)]);
 	if (argc != 2 || data.fractal_id == 0)
 	{
 		ft_putstr("please, enter one fractal name "
-			"from the list:\n 1) julia\n 2) mandelbrot\n");
+			"from the list:\n 1) julia\n 2) mandelbrot\n 3) plex\n");
 		return (0);
 	}
 	if ((error_code = init_data(&data)) < 0)
@@ -85,6 +85,8 @@ int		init_fract(t_data *data)
 		init_julia(data);
 	else if (data->fractal_id == FRACTAL_MANDELBROT)
 		init_mandelbrot(data);
+	else if (data->fractal_id == FRACTAL_PLEX)
+		init_plex(data);
 	else
 		return (-2);
 	return (0);

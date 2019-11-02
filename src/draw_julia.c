@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:39:21 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:39:45 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 15:42:31 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		init_julia(t_data *data)
 	data->max_iters = 50;
 	data->radius = 256;
 	data->offset_x = 0;
-	data->offset_x = 0;
+	data->offset_y = 0;
 }
 
 int			get_iter_julia(t_data *d, int px, int py)
@@ -35,12 +35,10 @@ int			get_iter_julia(t_data *d, int px, int py)
 	x = (((double)px) / 256.0 - 2.0) * d->scale + d->offset_x;
 	y = (((double)py) / 256.0 - 2.0) * d->scale + d->offset_y;
 	iter = 0;
-	while ((x * x + y * y <= d->radius) && (iter < d->max_iters))
+	while ((x * x + y * y < d->radius) && (iter < d->max_iters))
 	{
 		temp_y = 2.0 * x * y - d->c_i;
 		temp_x = x * x - y * y + d->c_r;
-		if (temp_x == x && temp_y == y)
-			return (0);
 		y = temp_y;
 		x = temp_x;
 		iter++;

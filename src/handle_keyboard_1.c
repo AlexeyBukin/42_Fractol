@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 12:12:53 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:07:23 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 15:45:12 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int		eq_pressed(int key, t_data *d)
 	if (d == NULL)
 		return (-1);
 	if (key == E_KEY)
-		max_i_tmp = clamp_int(d->max_iters * ITERATIONS_DELTA + 1, 2, 256);
+		max_i_tmp = clamp_int(d->max_iters * ITERATIONS_DELTA + 1, 2, 255);
 	else if (key == Q_KEY)
 		max_i_tmp = clamp_int((int)round(d->max_iters / ITERATIONS_DELTA - 1),
-				2, 256);
+				2, 255);
 	else
 		return (-1);
 	if (max_i_tmp == d->max_iters)

@@ -6,7 +6,7 @@
 /*   By: kcharla <kcharla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:06:26 by kcharla           #+#    #+#             */
-/*   Updated: 2019/11/02 13:42:44 by kcharla          ###   ########.fr       */
+/*   Updated: 2019/11/02 23:52:26 by kcharla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # define FRACTAL_JULIA        1
 # define FRACTAL_MANDELBROT   2
+# define FRACTAL_PLEX         3
 
 # define COMPLEX_ARG_REAL_DELTA 0.01
 # define COMPLEX_ARG_IMG_DELTA  0.01
@@ -61,10 +62,16 @@ typedef struct		s_data
 	double			c_i;
 	double			radius;
 	int				fractal_id;
-	int 			wheel_pressed;
-	int 			mouse_old_x;
-	int 			mouse_old_y;
+	int				wheel_pressed;
+	int				mouse_old_x;
+	int				mouse_old_y;
 }					t_data;
+
+typedef struct		s_complex
+{
+	double			r;
+	double			i;
+}					t_complex;
 
 int					on_mouse_moved(int x, int y, void *data);
 int					on_mouse_pressed(int key, int x, int y, void *data);
@@ -83,12 +90,16 @@ void				draw_julia(t_data *d);
 void				init_mandelbrot(t_data *data);
 void				draw_mandelbrot(t_data *d);
 
+void				init_plex(t_data *data);
+void				draw_plex(t_data *d);
+
 int					img_pixel_put(t_data *data, int x, int y, int col);
 int					img_clear(t_data *data);
 
 int					blend(int c1, int c2, double val);
 int					clamp_int(int val, int min, int max);
-double				map_from_0_to_1(double val, double from_min, double from_max);
+double				map_from_0_to_1(double val,
+						double from_min, double from_max);
 
 int					cs_black_white(double val);
 int					cs_r_g_b(double val);
