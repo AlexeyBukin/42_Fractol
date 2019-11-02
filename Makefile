@@ -18,8 +18,9 @@ LIB_FLAGS = -L $(LIB_X_DIR) -L $(LIB_FT_DIR) -ltrue_mlx -lft
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
 #ls *.c
-C_FILES_LIST = main.c event_handle.c utilities.c is_data_equal.c img_pixel_put.c draw_julia.c \
-color_schemes.c
+C_FILES_LIST = handle_mouse.c handle_keyboard_1.c handle_keyboard_2.c handle_window.c \
+color_schemes.c img_pixel_put.c draw_julia.c \
+fract.c main.c  utilities.c
 
 
 C_FILES	= $(addprefix $(C_DIR), $(C_FILES_LIST))
